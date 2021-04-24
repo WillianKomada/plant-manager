@@ -8,12 +8,13 @@ import {
   KeyboardAvoidingView,
   Platform,
   TouchableWithoutFeedback,
-  Keyboard
+  Keyboard,
+  Alert
 } from 'react-native';
+import { useNavigation } from '@react-navigation/core';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { Button } from '../components/Button';
-
-import { useNavigation } from '@react-navigation/core';
 
 import colors from '../styles/colors';
 import fonts from '../styles/fonts';
@@ -25,8 +26,23 @@ export function UserIdentification() {
 
   const navigation = useNavigation();
 
-  function handleSubmit() {
-    navigation.navigate('Confirmation');
+  async function handleSubmit() {
+    if (!name) 
+      return Alert.alert('How can i call you? 😢');
+
+    try {
+      await AsyncStorage.setItem('@plantmanager:user', name);
+
+      navigation.navigate('Confirmation', {
+        title: 'Already',
+        subtitle: 'Now let is get start to care your plants with very carefully',
+        buttonTitle: 'Start',
+        icon: 'smile',
+        nextScreen: 'PlantSelect'
+      });
+    } catch {
+      Alert.alert('Not is possible to save your name. 😢');
+    }
   }
 
   function handleInputBlur() {
@@ -66,7 +82,7 @@ export function UserIdentification() {
                   styles.input,
                   (isFocused || isFilled) && { borderColor: colors.green }
                 ]}
-                placeholder="Digite um nome"
+                placeholder="Type your name"
                 onBlur={handleInputBlur}
                 onFocus={handleInputFocus}
                 onChangeText={handleInputChange}
@@ -74,7 +90,7 @@ export function UserIdentification() {
 
               <View style={styles.footer}>
                 <Button 
-                  title="Confirmar"
+                  title="Confirm"
                   onPress={handleSubmit}
                 />
               </View>
