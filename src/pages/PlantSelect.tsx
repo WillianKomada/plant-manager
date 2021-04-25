@@ -103,6 +103,7 @@ export function PlantSelect() {
 
   if (loading)
     return <Load />
+    
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
@@ -167,7 +168,7 @@ const styles = StyleSheet.create({
   },
 
   header: {
-    paddingHorizontal: 30,
+    paddingHorizontal: 30
   },
 
   title: {

@@ -45,7 +45,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderRadius: 12,
     marginRight: 5
-
   },
 
   containerActive: {
@@ -59,6 +58,6 @@ const styles = StyleSheet.create({
 
   textActive: {
     fontFamily: fonts.heading,
-    color: colors.green_dark,
+    color: colors.green_dark
   }
 })

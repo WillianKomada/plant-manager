@@ -2,7 +2,7 @@ import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 
 import { UserIdentification } from '../pages/UserIdentification';
-import { Welcome } from '../pages/welcome';
+import { Welcome } from '../pages/Welcome';
 import { Confirmation } from '../pages/Confirmation';
 import { PlantSave } from '../pages/PlantSave';
 
